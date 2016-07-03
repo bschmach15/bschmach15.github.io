@@ -1,0 +1,35 @@
+ html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+body {
+    display: table;
+    font-family: "Goudy Old Style",Garamond,"Big Caslon","Times New Roman",serif;
+}
+
+.my-block {
+    text-align: right;
+    vertical-align: right;
+    display: table-cell;
+}
+
+h1 {
+	font: "Goudy Old Style", Garamond, "Big Caslon", "Times New Roman", serif;
+	font-size: 24px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 500;
+	line-height: 33.6px;
+}
+
+h3{
+    font-family: "Goudy Old Style",Garamond,"Big Caslon","Times New Roman",serif;
+/*    font-family: "Times New Roman", Times, serif;*/
+}
+
+p{
+    font-family: "Goudy Old Style",Garamond,"Big Caslon","Times New Roman",serif;
+}
