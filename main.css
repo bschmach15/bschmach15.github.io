@@ -17,12 +17,9 @@ body {
 }
 
 h1 {
-	font-family: 'Raleway', sans-serif;
+	font-family: 'Playfair Display', serif;
+    font-weight: 700;
 	font-size: 24px;
-	font-style: normal;
-	font-variant: normal;
-	font-weight: 500;
-	line-height: 33.6px;
 }
 
 h3{
