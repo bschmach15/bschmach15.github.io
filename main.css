@@ -3,7 +3,7 @@
     margin: 0;
     padding: 0;
     width: 100%;
-    background-color: darkgoldenrod;
+    background-color: lightgray;
 }
 
 body {
@@ -21,11 +21,12 @@ h1 {
 	font-family: 'Playfair Display', serif;
     font-weight: 700;
 	font-size: 24px;
+    border-bottom: solid 2pt;
 }
 
 h2 {
     font-family: 'Playfair Display', serif;
-    border-bottom: solid;
+/*    border-bottom: solid;*/
     font-size: 12px;
 }
 
@@ -39,9 +40,21 @@ p{
 }
 
 #header{
-    text-align: center
+    text-align: left;
 }
 
 li{
     display: inline;
 }
+
+#tagline{
+    
+}
+
+			div.bar {
+				display: inline-block;
+				width: 20px;
+				height: 75px;	/* Gets overriden by D3-assigned height below */
+				margin-right: 2px;
+				background-color: teal;
+			}
