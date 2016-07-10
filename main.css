@@ -16,7 +16,7 @@
     font-family: 'Raleway', sans-serif;
     font-weight: 100;
     border-color: transparent;
-    font-size: 2rem;
+    font-size: 2em;
     border-radius: 0;
     transition: 1s;
 }
@@ -65,6 +65,7 @@ li{
 a{
     color: white;
     font-family: 'Raleway', sans-serif;
+    border-bottom-color: transparent;
 }
 
 .container {
@@ -84,11 +85,12 @@ a{
 #name{
     color: white;
     font-family: 'Playfair Display', serif;
+    font-size: 6em;
 }
 
 #link{
     color: white;
-    font-size: 2rem;
+    font-size: 2em;
     font-family: 'Raleway', sans-serif;
     font-weight: 100;
 }
