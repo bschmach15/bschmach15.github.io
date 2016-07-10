@@ -8,7 +8,7 @@
 
 h1, h2{
     text-align: center;
-    font-family: 'Lobster', cursive;
+    font-family: 'Playfair Display', serif;
 /*    font-family: 'Raleway', sans-serif;*/
     color: white;
 }
@@ -42,6 +42,10 @@ ul
 li{
     display: table-cell;
     text-align: center;
+}
+
+a{
+    color: white;
 }
 
 .container {
