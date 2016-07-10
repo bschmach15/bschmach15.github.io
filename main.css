@@ -33,21 +33,7 @@ h1, h2{
 }
 
 h1 {
-    font-weight: 700;
     border-bottom: 1.5px solid;
-}
-
-h2 {
-    font-size: 12px;
-}
-
-h3{
-	font-family: 'Lobster', cursive;
-/*    font-family: "Times New Roman", Times, serif;*/
-}
-
-p{
-	font-family: 'Raleway', sans-serif;
 }
 
 ul
@@ -86,13 +72,6 @@ a{
     color: white;
     font-family: 'Playfair Display', serif;
     font-size: 6em;
-}
-
-#link{
-    color: white;
-    font-size: 2em;
-    font-family: 'Raleway', sans-serif;
-    font-weight: 100;
 }
 
 #jumbo{
