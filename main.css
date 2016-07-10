@@ -17,16 +17,17 @@ body {
     display: table-cell;
 }
 
+h1, h2{
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+}
+
 h1 {
-	font-family: 'Playfair Display', serif;
     font-weight: 700;
 	font-size: 24px;
-    border-bottom: solid 2pt;
 }
 
 h2 {
-    font-family: 'Playfair Display', serif;
-/*    border-bottom: solid;*/
     font-size: 12px;
 }
 
@@ -39,22 +40,17 @@ p{
 	font-family: 'Raleway', sans-serif;
 }
 
-#header{
-    text-align: left;
-}
-
 li{
     display: inline;
 }
 
-#tagline{
-    
+.jumbotron{
+    background: #222;
 }
 
-			div.bar {
-				display: inline-block;
-				width: 20px;
-				height: 75px;	/* Gets overriden by D3-assigned height below */
-				margin-right: 2px;
-				background-color: teal;
-			}
+.vertical-center{
+    min-height: 100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+}
