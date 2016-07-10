@@ -8,7 +8,11 @@
 
 h1, h2{
     text-align: center;
+<<<<<<< HEAD
     font-family: 'Lobster', cursive;
+=======
+    font-family: 'Raleway', sans-serif;
+>>>>>>> 7b1c59372d76c259ee53a19710ed142da579d20b
     color: white;
 }
 
