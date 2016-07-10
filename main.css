@@ -14,7 +14,6 @@ h1, h2{
 
 h1 {
     font-weight: 700;
-	font-size: 24px;
     border-bottom: 1.5px solid;
 }
 
@@ -64,6 +63,7 @@ a{
 
 #name{
     color: white;
+    font-size: 20rem;
     font-family: 'Playfair Display', serif;
 }
 
