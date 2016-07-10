@@ -3,14 +3,13 @@
     margin: 0;
     padding: 0;
     width: 100%;
-    background-color: #222;
+    background: #222;
 }
 
 h1, h2{
     text-align: center;
     font-family: 'Raleway', sans-serif;
 /*    font-family: 'Raleway', sans-serif;*/
-    color: white;
 }
 
 h1 {
@@ -46,6 +45,7 @@ li{
 
 a{
     color: white;
+    font-family: 'Raleway', sans-serif;
 }
 
 .container {
@@ -55,10 +55,23 @@ a{
     display: flex;
     justify-content: center;
     align-items: center;
+    background: #222;
 }
 
 .jumbotron{
     width: 100%;
+}
+
+#name{
+    color: white;
+    font-family: 'Playfair Display', serif;
+}
+
+#link{
+    color: white;
+    font-size: 2rem;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 100;
 }
 
 #jumbo{
