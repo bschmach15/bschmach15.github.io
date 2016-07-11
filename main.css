@@ -1,12 +1,13 @@
  html, body {
     height: 100%;
-    margin: 0;
-    padding: 0;
     background: #222;
+     display: block;
 }
 
 #body{
     background: #222;
+    display: block;
+    margin: 8px;
 }
 
 #button{
@@ -30,7 +31,6 @@ h1{
     font-family: 'Playfair Display', serif;
     border-bottom: 1.5px solid;
     font-weight: 100;
-/*    font-family: 'Raleway', sans-serif;*/
 }
 
 ul
@@ -61,7 +61,6 @@ a:link{
     display: flex;
     justify-content: center;
     align-items: center;
-    background: #222;
 }
 
 .jumbotron{
