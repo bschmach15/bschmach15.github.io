@@ -17,13 +17,19 @@
     font-weight: 100;
     border-color: transparent;
     font-size: 2em;
-    border-radius: 0;
+    border-radius: 3px;
     transition: 1s;
+    border-color: transparent;
 }
 
 #button:hover{
     background-color: gray;
     transition: 1s;
+}
+
+#button:focus {
+    outline: thin dotted;
+    color: aqua;
 }
 
 h1{
@@ -61,6 +67,10 @@ a:link{
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+#cont{
+    width: 50%;
 }
 
 .jumbotron{
