@@ -1,17 +1,23 @@
  html, body {
-    height: 100%;
-    background: #222;
+     height: 100%;
+     background: #222;
      display: block;
+     overflow: hidden;
+     margin: 8px;
+     background-color: #222;
 }
 
 #body{
-    background: #222;
-    display: block;
-    margin: 8px;
+    background-color: #222;
 }
 
-#button{
-    background: #222;
+p{
+    font-family: 'Raleway', serif;
+    color: white;
+}
+
+li .btn-default {
+    background: none;
     color: white;
     font-family: 'Raleway', sans-serif;
     font-weight: 100;
@@ -19,17 +25,14 @@
     font-size: 2em;
     border-radius: 3px;
     transition: 1s;
+    box-shadow: 0 0px, 0 0px, 0 0px 0px;
     border-color: transparent;
 }
 
-#button:hover{
-    background-color: gray;
-    transition: 1s;
-}
 
-#button:focus {
-    outline: thin dotted;
-    color: aqua;
+li .btn:hover{
+    background-color: darkblue;
+    transition: 1s;
 }
 
 h1{
@@ -86,4 +89,12 @@ a:link{
 #jumbo{
     background-color: transparent;
     border-color: transparent;
+}
+
+#texty{
+    color: white;
+}
+
+.about{
+    background: #222;
 }

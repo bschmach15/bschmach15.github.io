@@ -13,7 +13,7 @@
 
 <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-    <link href="https://fonts.googleapis.com/css?family=Lobster|Playfair+Display:400,700|Raleway:100,300,400" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans|Playfair+Display:400,700|Raleway:100,300,400" rel="stylesheet">
     <script type="text/javascript" src="d3/d3.v3.js"></script>
 </head>
 <body id="body">
@@ -22,14 +22,24 @@
                 <div class="jumbotron" id="jumbo">
                     <h1 id="name">Benjamin Schmachtenberger</h1>
                     <ul id="links">
-                        <li><a href="Pages/about.html" type="button" class="btn btn-default" id="button">About</a></li>
-                        <li><a href="#" type="button" class="btn btn-default" id="button">Resum&egrave</a></li>
-                        <li><a href="Pages/Projects.html" type="button" class="btn btn-default" id="button">Projects</a></li>
-                        <li><a href="Pages/contact.html" type="button" class="btn btn-default" id="button">Contact</a></li>
-                    </ul>      
+                        <li><a href="#" type="button" class="btn btn-default" id="about" onclick="aboutText()">About</a></li>
+                        <li><a href="#" type="button" class="btn btn-default" id="resume">Resum&egrave</a></li>
+                        <li><a href="Pages/Projects.html" type="button" class="btn btn-default" id="projects">Projects</a></li>
+                        <li><a href="Pages/contact.html" type="button" class="btn btn-default" id="contact">Contact</a></li>
+                    </ul>
+                    <p id="about">about</p>
+                    <p id="resume">resume</p>
+                    <p id="projects">projects</p>
+                    <p id="contact">contact</p>
                 </div>
         </div>
     </div>
 
+    <script>
+        function aboutText(){
+            document.getElementbyId("about").innerHTML = "Stuff stuff stuff";
+        }
+    </script>
+    
 </body>
 </html>
