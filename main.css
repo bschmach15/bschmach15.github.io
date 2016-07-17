@@ -1,10 +1,14 @@
- html, body {
+html, body {
      height: 100%;
      background: #222;
      display: block;
      overflow: hidden;
      margin: 8px;
-     background-color: #222;
+/*     background-color: #222;*/
+}
+
+body{
+    background-color: #222;
 }
 
 #body{
@@ -31,15 +35,20 @@ li .btn-default {
 
 
 li .btn:hover{
-    background-color: darkblue;
+    background-color: dimgrey;
     transition: 1s;
 }
 
-h1{
+li .btn:focus{
+    background-color: transparent;    
+}
+
+body h1{
     text-align: center;
     font-family: 'Playfair Display', serif;
     border-bottom: 1.5px solid;
     font-weight: 100;
+    color: white;
 }
 
 ul
@@ -70,29 +79,20 @@ a:link{
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: #222;
 }
 
-#cont{
-    width: 50%;
-}
 
-.jumbotron{
+body .jumbotron{
     width: 100%;
+    background-color: transparent;
+    border-color: transparent;
 }
 
 #name{
     color: white;
     font-family: 'Playfair Display', serif;
     font-size: 6em;
-}
-
-#jumbo{
-    background-color: transparent;
-    border-color: transparent;
-}
-
-#texty{
-    color: white;
 }
 
 .about{
