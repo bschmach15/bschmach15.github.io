@@ -3,7 +3,11 @@
 <style>
 
 body {
-  background: #0D0D1D;
+    background: #0D0D1D;
+    position: fixed; 
+    overflow-y: scroll;
+    width: 100%;
+    height: 100%;
 }
 
 .stroke {
@@ -48,7 +52,8 @@ body {
 
 var width = window.innerWidth,
     height = window.innerHeight
-    scale = 350;
+    scale = 300;
+
 
 
 var space = d3.geo.azimuthalEquidistant()
@@ -107,21 +112,41 @@ function createStars(n) {
     return data;
 }
 
-var starList = createStars(650);
-console.log(starList);
+d3.json("stars.json", function(d){
+    var starPlotList = [];
 
-var stars = svg.append("g")
-                .selectAll("g")
-                .data(starList)
-                .enter()
-                .append("path")
-                .attr("class", "star")
-                .attr("d", function(d){
-                    spacePath.pointRadius(d.properties.radius);
-                    return spacePath(d);
-                });
+    var rscale = d3.scale.linear()
+                        .domain(d3.extent(d.features, function(d){return d.properties.mag}))
+                        .range([3,1]);
+
+    path.pointRadius(function(d){
+        return d.properties ? rscale(d.properties.mag) : 1;
+    });
+
+    svg.append("g")
+        .selectAll("g")
+        .data(d.features)
+        .enter()
+        .append("path")
+        .attr("class","star")
+        .attr("d", path)
+});
+
+
+
+var starList = createStars(650);
+
+// var stars = svg.append("g")
+//                 .selectAll("g")
+//                 .data(starList)
+//                 .enter()
+//                 .append("path")
+//                 .attr("class", "star")
+//                 .attr("d", function(d){
+//                     spacePath.pointRadius(d.properties.radius);
+//                     return spacePath(d);
+//                 });
 
 
 </script>
-<h1>Hello World!</h1>
 </body>
