@@ -10,9 +10,9 @@ class CSVReader:
 
     def __init__(self, csvpath):
 
-        self.csvfile = open(csvpath, 'r')
-        self.reader = csv.reader(self.csvfile, delimiter=',')
-        self.header = self.reader.next()
+        self.csvfile = open(csvpath,'r')
+        self.reader = csv.DictReader(self.csvfile, delimiter=',')
+        self.header = self.reader.__next__()
 
     def __iter__(self):
 
@@ -45,7 +45,7 @@ if __name__ == '__main__':
     # The data will be stored as a feature collection
     feature = {'type': 'FeatureCollection', 'features': []}
 
-    for row in reader:
+    for row in reader.reader:
 
         # Compute the magnitude and equivalent (ish) longitude and latitude
         mag = float(row['AppMag'])
@@ -54,7 +54,7 @@ if __name__ == '__main__':
         name = row['Name']
 
         # Store only the stars visible to the naked eye
-        if mag < 6:
+        if mag < 4.25:
             feature['features'].append({
                 'type': 'Feature',
                 'properties': {'mag': mag, 'name': name},
