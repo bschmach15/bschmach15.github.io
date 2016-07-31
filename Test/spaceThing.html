@@ -36,7 +36,6 @@ body {
 .star {
     fill: #fff;
     stroke: rgba(255, 255, 255, .5);
-    stroke-width: .25px;
 }
 
 .frame {
@@ -52,13 +51,16 @@ body {
 
 var width = window.innerWidth,
     height = window.innerHeight
-    scale = 300;
+    scale = 450;
 
-
+var rotate = {x:0, y: 90};
 
 var space = d3.geo.azimuthalEquidistant()
                 .translate([width/2, height/2])
                 .scale(scale)
+                .precision(.1)
+                .clipAngle(180 - 1e-3)
+                .rotate([rotate.x /2,rotate.y /2 ]);
 
 var spacePath = d3.geo.path()
                 .projection(space);
@@ -116,23 +118,45 @@ d3.json("stars.json", function(d){
     var starPlotList = [];
 
     var rscale = d3.scale.linear()
-                        .domain(d3.extent(d.features, function(d){return d.properties.mag}))
+                        .domain(d3.extent(d.features, function(d){return d.properties.mag;}))
                         .range([3,1]);
 
-    path.pointRadius(function(d){
+    spacePath.pointRadius(function(d){
         return d.properties ? rscale(d.properties.mag) : 1;
     });
 
-    svg.append("g")
+    var stars = svg.append("g")
         .selectAll("g")
         .data(d.features)
         .enter()
         .append("path")
         .attr("class","star")
-        .attr("d", path)
+        .attr("d", spacePath)
 });
 
+function redraw() {
+    stars.attr("d",function(d){
+        spacePath.pointRadius(d.properties.radius);
+        return spacePath(d);
+    });
+}
 
+function move() {
+    if(d3.event){
+        var origin = [d3.event.translate[0] * -1, d3.event.translate[1]];
+        var spaceOrigin = [origin[0] * -1, origin[1] * -1];
+        space.origin(spaceOrigin);
+        redraw();
+    }
+}
+
+var dragBehavior = d3.behavior.drag()
+                        .origin(Object)
+                        .on('drag', function(d){
+                            space.rotate([(d.x = d3.event.x)/2 , -(d3.y = d3.event.y) /2]);
+                        });
+
+spacePath.call(dragBehavior);
 
 var starList = createStars(650);
 
