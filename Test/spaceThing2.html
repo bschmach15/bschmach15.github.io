@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+
+body {
+    background: #0D0D1D;
+    position: fixed; 
+    overflow-y: scroll;
+    width: 100%;
+    height: 100%;
+}
+
+.stroke {
+  fill: none;
+  stroke: #000;
+  stroke-width: 3px;
+}
+
+.fill {
+  fill: #fff;
+}
+
+.graticule {
+  fill: none;
+  stroke: #575761;
+  stroke-width: .5px;
+  stroke-opacity: .5;
+}
+
+.boundary {
+  fill: none;
+  stroke: #fff;
+  stroke-width: .5px;
+}
+
+.star {
+    fill: #fff;
+    stroke: rgba(255, 255, 255, .5);
+}
+
+.frame {
+    fill: none;
+    pointer-events: all;
+}
+
+.d3-tip {
+  line-height: 1;
+  font-weight: bold;
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  border-radius: 2px;
+}
+
+/* Creates a small triangle extender for the tooltip */
+.d3-tip:after {
+  box-sizing: border-box;
+  display: inline;
+  font-size: 10px;
+  width: 100%;
+  line-height: 1;
+  color: rgba(0, 0, 0, 0.8);
+  content: "\25BC";
+  position: absolute;
+  text-align: center;
+}
+
+/* Style northward tooltips differently */
+.d3-tip.n:after {
+  margin: -1px 0 0 0;
+  top: 100%;
+  left: 0;
+}
+
+</style>
+<body>
+<script src="//d3js.org/d3.v3.min.js"></script>
+<script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
+<script src="//d3js.org/topojson.v1.min.js"></script>
+<script>
+
+var width = window.innerWidth,
+    height = window.innerHeight
+    scale = 450;
+
+var rotate = {x:0, y: 90};
+
+var tip = d3.tip()
+  .attr('class', 'd3-tip')
+  .offset([-10, 0])
+  .html(function(d) {
+    return d.properties.name[0];
+  })
+
+var space = d3.geo.azimuthalEquidistant()
+                .translate([width/2, height/2])
+                .scale(scale)
+                .precision(.1)
+                .clipAngle(180 - 1e-3)
+                .rotate([180,-90,0]);
+
+var spacePath = d3.geo.path()
+                .projection(space);
+
+var projection = d3.geo.azimuthalEquidistant()
+    .scale(scale)
+    .translate([width / 2, height / 2])
+    .clipAngle(180 - 1e-3)
+    .precision(.1)
+    .rotate([90,90]);
+
+var path = d3.geo.path()
+    .projection(projection);
+
+var graticule = d3.geo.graticule();
+
+var svg = d3.select("body")
+    .append("svg")
+    .attr("width", width)
+    .attr("height", height)
+    .append("g");
+
+svg.call(tip);
+
+svg.append("path")
+    .datum(graticule)
+    .attr("class", "graticule")
+    .attr("d", path);
+
+svg.append("rect")
+    .attr("class", "frame")
+    .attr("width",width)
+    .attr("height", height);
+
+function randomLonLat(){
+    return [Math.random() * 360 - 180, Math.random() * 180 - 90];
+}
+
+function createStars(n) {
+    var data = [];
+    for(var i = 0; i < n; i++){
+        data.push({
+            geometry:{
+                type: 'Point',
+                coordinates: randomLonLat()
+            },
+            type: 'Feature',
+            properties: {
+                radius: Math.random() * 1.5
+            }
+        });
+    }
+    return data;
+}
+
+d3.json("stars.json", function(d){
+    var starPlotList = [];
+
+    var rscale = d3.scale.linear()
+                        .domain(d3.extent(d.features, function(d){return d.properties.mag;}))
+                        .range([3,1]);
+
+    spacePath.pointRadius(function(d){
+        return d.properties ? rscale(d.properties.mag) : 1;
+    });
+
+    var stars = svg.append("g")
+        .selectAll("g")
+        .data(d.features)
+        .enter()
+        .append("path")
+        .attr("class","star")
+        .attr({
+            "starName": function(d){
+                return d.properties.name
+            }
+        })
+        .attr("d", spacePath)
+        .on('mouseover', tip.show)
+        .on('mouseout', tip.hide);
+});
+
+
+
+function redraw() {
+    stars.attr("d",function(d){
+        spacePath.pointRadius(d.properties.radius);
+        return spacePath(d);
+    });
+}
+
+function move() {
+    if(d3.event){
+        var origin = [d3.event.translate[0] * -1, d3.event.translate[1]];
+        var spaceOrigin = [origin[0] * -1, origin[1] * -1];
+        space.origin(spaceOrigin);
+        redraw();
+    }
+}
+
+var dragBehavior = d3.behavior.drag()
+                        .origin(Object)
+                        .on('drag', function(d){
+                            space.rotate([(d.x = d3.event.x)/2 , -(d3.y = d3.event.y) /2]);
+                        });
+
+spacePath.call(dragBehavior);
+
+// var starList = createStars(650);
+
+// var stars = svg.append("g")
+//                 .selectAll("g")
+//                 .data(starList)
+//                 .enter()
+//                 .append("path")
+//                 .attr("class", "star")
+//                 .attr("d", function(d){
+//                     spacePath.pointRadius(d.properties.radius);
+//                     return spacePath(d);
+//                 });
+
+
+</script>
+</body>
