@@ -75,7 +75,7 @@ body {
 </style>
 <body>
 <script src="//d3js.org/d3.v3.min.js"></script>
-<script src="tip.js"></script>
+<script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
 <script src="//d3js.org/topojson.v1.min.js"></script>
 <script>
 
@@ -89,8 +89,23 @@ var tip = d3.tip()
   .attr('class', 'd3-tip')
   .offset([-10, 0])
   .html(function(d) {
-    return d.properties.name[0];
+    if (typeof d.properties.name === 'object'){
+        return d.properties.name[0];
+    } else {
+        return d.properties.name;
+    }
   })
+
+// var messierTip = d3.tip()
+//   .attr('class', 'd3-tip')
+//   .offset([-10, 0])
+//   .html(function(d) {
+//     if typeof d.properties.name === 'object'{
+//         return d.properties.name[0]
+//     } else {
+//         return d.properties.name;
+//     }
+//   })
 
 var space = d3.geo.azimuthalEquidistant()
                 .translate([width/2, height/2])
@@ -132,27 +147,6 @@ svg.append("rect")
     .attr("width",width)
     .attr("height", height);
 
-function randomLonLat(){
-    return [Math.random() * 360 - 180, Math.random() * 180 - 90];
-}
-
-function createStars(n) {
-    var data = [];
-    for(var i = 0; i < n; i++){
-        data.push({
-            geometry:{
-                type: 'Point',
-                coordinates: randomLonLat()
-            },
-            type: 'Feature',
-            properties: {
-                radius: Math.random() * 1.5
-            }
-        });
-    }
-    return data;
-}
-
 d3.json("stars.json", function(d){
     var starPlotList = [];
 
@@ -181,6 +175,32 @@ d3.json("stars.json", function(d){
 });
 
 
+d3.json("messier.json", function(d){
+
+    var rscale = d3.scale.linear()
+                        .domain(d3.extent(d.features, function(d){return d.properties.mag;}))
+                        .range([3,1]);
+
+    spacePath.pointRadius(function(d){
+        return d.properties ? rscale(d.properties.mag) : 1;
+    });
+
+    var stars = svg.append("g")
+        .selectAll("g")
+        .data(d.features)
+        .enter()
+        .append("path")
+        .attr("class","star")
+        .attr({
+            "starName": function(d){
+                return d.properties.name
+            }
+        })
+        .attr("d", spacePath)
+        .on('mouseover', tip.show)
+        .on('mouseout', tip.hide);
+});
+
 
 function redraw() {
     stars.attr("d",function(d){
@@ -205,20 +225,6 @@ var dragBehavior = d3.behavior.drag()
                         });
 
 spacePath.call(dragBehavior);
-
-// var starList = createStars(650);
-
-// var stars = svg.append("g")
-//                 .selectAll("g")
-//                 .data(starList)
-//                 .enter()
-//                 .append("path")
-//                 .attr("class", "star")
-//                 .attr("d", function(d){
-//                     spacePath.pointRadius(d.properties.radius);
-//                     return spacePath(d);
-//                 });
-
 
 </script>
 </body>
