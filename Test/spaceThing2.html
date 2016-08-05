@@ -49,7 +49,9 @@ body {
   padding: 12px;
   background: rgba(0, 0, 0, 0.8);
   color: #fff;
-  border-radius: 2px;
+  border-radius: 10px;
+  border-width: 10px;
+  border-color: #FC0000;
 }
 
 /* Creates a small triangle extender for the tooltip */
@@ -171,6 +173,9 @@ d3.json("stars.json", function(d){
         })
         .attr("d", spacePath)
         .on('mouseover', tip.show)
+        // .on('mouseover', function(d){
+        //     console.log(d.properties.name);
+        // })
         .on('mouseout', tip.hide);
 });
 
@@ -178,7 +183,7 @@ d3.json("stars.json", function(d){
 d3.json("messier.json", function(d){
 
     var rscale = d3.scale.linear()
-                        .domain(d3.extent(d.features, function(d){return d.properties.mag;}))
+                        .domain(d3.extent(d.features, function(d){return d.properties.size;}))
                         .range([3,1]);
 
     spacePath.pointRadius(function(d){
