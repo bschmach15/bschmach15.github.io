@@ -1,0 +1,35 @@
+[
+	{
+		"title": "Johns Hopkins University Applied Physics Lab",
+		"startDate": "January, 2017",
+		"endDate": "Present",
+		"type": "employment",
+		"description": [
+			{ "suptitle": "Radio Propagation and Communication Analysis",
+			"description": [
+				{
+					
+				}]
+		},{ "suptitle": "stuff",
+			"description": [
+				{
+
+				}]
+
+		}]
+	},
+	{
+		"title": "SRC",
+		"startDate": "May, 2016",
+		"endDate": "August, 2016",
+		"type": "internship",
+		"description": "Text text text"
+	},
+	{
+		"title": "Rensselaer Polytechnic Institute",
+		"startDate": "August, 2015",
+		"endDate": "December 2016",
+		"type": "education",
+		"description": "Text text text"
+	}
+]
